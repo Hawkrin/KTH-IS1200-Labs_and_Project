@@ -1,0 +1,2 @@
+asmtest.S.o: asmtest.S
+asmtest.S :
