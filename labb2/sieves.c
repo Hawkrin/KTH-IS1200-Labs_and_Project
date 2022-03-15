@@ -30,22 +30,20 @@ void print_number(int n) {
 
 
 void print_sieves(int n) {
-	char list[n]; //Creates a list with n size. 
+	int list[n]; //Creates a list with n size. 
 
-	//marking all numbers as possible primes
-	//for (int i = 0; i < n; i++) { list[i] = 1; }
+	for (int i = 0; i < n; i++) { list[i] = 1; }
 
-	//we are checking all numbers between 2 and sqrt(n)
-	for (int i = 2; i < n; i++) {
-		if (!list[i]) {                       // checks if the current number is marked as a prime
-			for (int j = i; j < n; j += i) { //marks every number that is dividable with "i"
-				list[j] = 1;
+	for (int i = 2; i <= sqrt(n); i++) {
+		if (list[i]) {                       // If the number has not been marked
+			for (int j = i * i; j < n; j += i) {
+				list[j] = 0;
 			}
 		}
 	}
 
-	for (int i = 2; i < n; i++) {  //we print the rest of the numbers that's still marked as 1
-		if (!(int)list[i]) { print_number(i); }
+	for (int i = 2; i < n; i++) { 
+		if (list[i]) { print_number(i); }
 	}
 
 	printf("\n");
